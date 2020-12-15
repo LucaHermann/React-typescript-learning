@@ -1,4 +1,5 @@
 import React from 'react';
+import './Person.css';
 
 interface Iperson {
   switchNameHandler?: () => void,
@@ -10,7 +11,7 @@ interface Iperson {
 
 const person = (props: Iperson) => {
   return (
-    <div>      
+    <div className="Person">      
       <h3 onClick={props.switchNameHandler}>I'm {props.username} and I am {props.age}</h3>
       <p>{props.children}</p>
       <input 

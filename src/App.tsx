@@ -43,6 +43,7 @@ const App = () => {
   return (
     <div className="App">
       <button 
+        className="mainButton"
         onClick={() => switchNameHandler('Carlos')}
       >Switch Name</button>
       <Person 
