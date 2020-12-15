@@ -1,65 +1,37 @@
 import React, {useState} from 'react';
 import './App.css';
 
-import Person from './Person/Person';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 const App = () => {
-  const [ personsState, setPersonsState ] = useState({
-    persons: [
-      { username: 'Carla', age: 26},
-      { username: 'Luca', age: 23},
-      { username: 'Dauph', age: 23}
-    ]
-  });
+  const [boardBrandState, setBoardBrandState] = useState({
+    brand: 'Primitive'
+  })
 
-  const [otherState, setOtherState] = useState({
-    otherState: 'undefined'
-  });
-
-  const switchNameHandler = (newName: string): void => {
-    setPersonsState({
-      persons: [
-        { username: newName, age: 62},
-        { username: 'Luquita', age: 32},
-        { username: 'Dufo', age: 32}
-      ]
-    });
-    setOtherState({
-      otherState: 'null'
-    });
-  }
-
-  const usernameChangedHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const boardBrandHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
-    setPersonsState({
-      persons: [
-        { username: 'Carlita', age: 26},
-        { username: e.target.value, age: 23},
-        { username: 'Dufo', age: 23}
-      ]
-    });
+    setBoardBrandState({
+      brand: e.target.value
+    })
   }
 
   return (
     <div className="App">
-      <button 
-        className="mainButton"
-        onClick={() => switchNameHandler('Carlos')}
-      >Switch Name</button>
-      <Person 
-        username={personsState.persons[0].username}
-        age={personsState.persons[0].age}
-        switchNameHandler={switchNameHandler.bind(this, 'Carlita')}
-        >My hobbies: Roasting peoples</Person>
-      <Person
-        username={personsState.persons[1].username} 
-        age={personsState.persons[1].age}
-        usernameChangedHandler={usernameChangedHandler}
-        >My hobbies: Cyberpunk</Person>
-      <Person
-        username={personsState.persons[2].username} 
-        age={personsState.persons[2].age} />
-      <p>{otherState.otherState}</p>
+      <h1>Assignment 0</h1>
+      <br />
+      <UserInput 
+        boardBrandHandler={boardBrandHandler} 
+        brand={boardBrandState.brand} />
+      <UserOutput 
+        size={8.5} 
+        brand={boardBrandState.brand} />
+      <UserOutput 
+        size={8.125} 
+        brand='REAL' />
+      <UserOutput 
+        size={8.3} 
+        brand='Palace' />
     </div>
   );
 }
