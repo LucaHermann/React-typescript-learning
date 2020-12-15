@@ -16,26 +16,48 @@ const App = (props: any) => {
     otherState: 'undefined'
   });
 
-  const switchNameHandler = (): void => {
+  const switchNameHandler = (newName: string): void => {
+    setPersonsState({
+      persons: [
+        { username: newName, age: 62},
+        { username: 'Luquita', age: 32},
+        { username: 'Dufo', age: 32}
+      ]
+    });
+    setOtherState({
+      otherState: 'null'
+    });
+  }
+
+  const usernameChangedHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    e.preventDefault();
     setPersonsState({
       persons: [
         { username: 'Carlita', age: 26},
-        { username: 'Luquita', age: 23},
+        { username: e.target.value, age: 23},
         { username: 'Dufo', age: 23}
       ]
     });
-    setOtherState({otherState: 'null'});
   }
 
   return (
     <div className="App">
-      <Person username={personsState.persons[0].username} age={personsState.persons[0].age}>My hobbies: Roasting peoples</Person>
-      <Person username={personsState.persons[1].username} age={personsState.persons[1].age}>My hobbies: Cyberpunk</Person>
-      <Person username={personsState.persons[2].username} age={personsState.persons[2].age} />
-      <hr />
-      <br />
-      <p>App others states: <b>{otherState.otherState}</b></p>
-      <button onClick={switchNameHandler}>Switch Name</button>
+      <button 
+        onClick={() => switchNameHandler('Carlos')}
+      >Switch Name</button>
+      <Person 
+        switchNameHandler={switchNameHandler.bind(this, 'Carlita')}
+        username={personsState.persons[0].username}
+        age={personsState.persons[0].age}>My hobbies: Roasting peoples</Person>
+      <Person
+        username={personsState.persons[1].username} 
+        age={personsState.persons[1].age}
+        usernameChangedHandler={usernameChangedHandler}
+        >My hobbies: Cyberpunk</Person>
+      <Person
+        username={personsState.persons[2].username} 
+        age={personsState.persons[2].age} />
+      <p>{otherState.otherState}</p>
     </div>
   );
 }
