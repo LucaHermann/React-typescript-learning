@@ -17,7 +17,8 @@ const person = (props: Iperson) => {
         type="text" 
         name="newName" 
         id="newName"
-        onChange={props.usernameChangedHandler}/>
+        onChange={props.usernameChangedHandler}
+        value={props.username}/>
     </div>
   )
 }

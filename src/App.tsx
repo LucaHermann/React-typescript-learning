@@ -3,7 +3,7 @@ import './App.css';
 
 import Person from './Person/Person'
 
-const App = (props: any) => {
+const App = () => {
   const [ personsState, setPersonsState ] = useState({
     persons: [
       { username: 'Carla', age: 26},
@@ -46,9 +46,10 @@ const App = (props: any) => {
         onClick={() => switchNameHandler('Carlos')}
       >Switch Name</button>
       <Person 
-        switchNameHandler={switchNameHandler.bind(this, 'Carlita')}
         username={personsState.persons[0].username}
-        age={personsState.persons[0].age}>My hobbies: Roasting peoples</Person>
+        age={personsState.persons[0].age}
+        switchNameHandler={switchNameHandler.bind(this, 'Carlita')}
+        >My hobbies: Roasting peoples</Person>
       <Person
         username={personsState.persons[1].username} 
         age={personsState.persons[1].age}
